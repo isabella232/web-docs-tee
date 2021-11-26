@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-:::tip Objective
+:::info Objective
 Provide a secure alternative to Kusama / Polkadot validators based on TrustZone (ARM’s Trusted Execution Environment (TEE) technology).
 
 We believe that an affordable reference open-source software/hardware stack based on trusted execution environment technologies will be a very valuable tool contribution to the validator community.
@@ -18,26 +18,20 @@ We believe that an affordable reference open-source software/hardware stack base
 - Provide a PR to substrate / Kusama node to allow for remote signing services.
 - Provide a Ledger Nano S provisioning application to image signing keys.
 
-:::tip More information
+:::info More information
 Click [here](Description.md) for additional information about the original project proposal.
 :::
-
-## Submissions
-
-Please refer to the corresponding submission
-
-- [Submission Milestone 1](SubmissionM1.md) **SUBMITTED**
-- [Submission Milestone 2](SubmissionM2.md) **IN PROGRESS**
-- [Submission Milestone 3](SubmissionM3.md)
 
 ## Where to buy test devices
 
 For testing purposes, we recommend the following devices:
 
-| Model           | Price    | Notes                             |
-| --------------- | -------- | --------------------------------- |
-| STM32MP157C-DK2 | ~99 USD  | [Mouser][1] [Digikey][2] [ST][3]  |
-| MCiMX8-evkb     | ~484 USD | [Mouser][4] [Digikey][5] [NXP][6] |
+| Model               | Price        | Notes                                 | Status       |
+| ------------------- | ------------ | ------------------------------------- | ------------ |
+| ~~STM32MP157C-DK2~~ | ~~~99 USD~~  | ~~[Mouser][1] \| [Digikey][2] \| [ST][3]~~  | Discontinued |
+| ~~MCiMX8-evkb~~     | ~~~484 USD~~ | ~~[Mouser][4] \| [Digikey][5] \| [NXP][6]~~ | Discontinued |
+| STM32MP157F-DK2     | ~99 USD      | [Mouser][7] \| [Digikey][8] \| [ST][9]      |              |
+| 8MMINILPD4-EVKB     | ~399 USD     | [Mouser][10] \| [Digikey][11] \| [NXP][12]  |              |
 
 [1]: https://www.mouser.ch/ProductDetail/STMicroelectronics/STM32MP157C-DK2?qs=9r4v7xj2LnnSrQDGcA2diw==
 [2]: https://www.digikey.ch/products/en?keywords=MCIMX8M-EVKB
@@ -45,17 +39,31 @@ For testing purposes, we recommend the following devices:
 [4]: https://www.nxp.com/part/MCIMX8M-EVKB#/
 [5]: https://www.mouser.ch/ProductDetail/NXP-Semiconductors/MCIMX8M-EVKB?qs=%2Fha2pyFaduhMHVqoUq4oRfF9hEn3wIuiNQ14GBmEQkNua8L5aW7Edg%3D%3D
 [6]: https://www.digikey.ch/products/en?keywords=STM32MP157C-DK2
+[7]: https://www.mouser.ch/ProductDetail/STMicroelectronics/STM32MP157F-DK2?qs=%2Fha2pyFaduh%2FKELL0HLb%2FECDk5lYWRrcRLUQZ3SoIdw032GWb9p%252BhQ==
+[8]: https://www.digikey.ch/products/en?keywords=STM32MP157F-DK2
+[9]: https://www.st.com/en/evaluation-tools/stm32mp157f-dk2.html#sample-buy
+[10]: https://www.mouser.ch/ProductDetail/NXP/8MMINILPD4-EVKB?qs=sGAEpiMZZMv0NwlthflBiwR1FQLSfx15LWRjYUcqUMY%3D
+[11]: https://www.digikey.ch/products/en?keywords=8MMINILPD4-EVKB
+[12]: https://www.nxp.com/part/8MMINILPD4-EVKB#/
 
 ## Scope changes
 
-:::warning
-Test
+:::info
+Along the development process, external factors have resulted in the minor adjustments to the project scope
 :::
 
 - Instead of using i.MX6 (previous generation), we have changed to focus to newer devices based on:
-  - STM32MP157C
+
+  - STM32MP157
   - i.MX8
-- After discussing with the Parity team, it has been decided that Substrate changes will be done by the Parity team. Zondax with later integrate by using this API.
+
+- Due to some devices being discontinued, we have migrated the work to more recent models.
+
+- ~~After discussing with the Parity team, it has been decided that Substrate changes will be done by the Parity team.
+Zondax with later integrate by using this API.~~
+
+- While Parity provided some initial reference implementation, this was not adequate for our purposes. Up to this date, Parity has not merged their changes into Substrate.
+In order to make progress, Zondax has created a fork with the neces 
 
 ## Original description
 
@@ -63,19 +71,18 @@ Test
 
 Provide a secure alternative to Kusama / Polkadot validators based on TrustZone (ARM’s Trusted Execution Environment (TEE) technology). At the moment of this writing, Polkadot and Kusama validators' main option is to use a full node that signs and stores a session key in the host filesystem.
 
-Validators require a cost efficient, reliable, low latency and secure way to sign and store keys. Their infrastructure and requirements are expected to evolve over time, so a flexible,  customizable and secure path should be available.
+Validators require a cost efficient, reliable, low latency and secure way to sign and store keys. Their infrastructure and requirements are expected to evolve over time, so a flexible, customizable and secure path should be available.
 
 Validators are expected to ensure adequate physical security, so attacks that require physical access to devices for an extended period of time are typically out of scope. Key rotation and roles provide some additional safety warranties. For this reason, security assumptions for validator setups are not identical to the security assumptions of consumer hardware wallets.
 
-We believe that an affordable reference open-source software/hardware stack based on trusted execution environment technologies will be a very valuable tool contribution to the validator community. 
+We believe that an affordable reference open-source software/hardware stack based on trusted execution environment technologies will be a very valuable tool contribution to the validator community.
 This project will focus on providing a solution using ARM-based devices that provide both physical and logical separation from full nodes. This will allow a secure and low-cost solution for validators.
 
 ### Description
 
-Validators require a cost efficient, reliable, low latency and secure way to sign and store keys. Their infrastructure and requirements are expected to evolve over time, so a flexible,  customizable and secure path should be available.
+Validators require a cost efficient, reliable, low latency and secure way to sign and store keys. Their infrastructure and requirements are expected to evolve over time, so a flexible, customizable and secure path should be available.
 
 Validators are expected to ensure adequate physical security, so attacks that require physical access to devices for an extended period of time are typically out of scope. Key rotation and roles provide some additional safety warranties. For this reason, security assumptions for validator setups are not identical to the security assumptions of consumer hardware wallets.
-
 
 This project will focus on providing a solution using ARM-based devices that provide both physical and logical separation from full nodes. This will allow a secure and low-cost solution for validators.
 
@@ -98,7 +105,7 @@ Our plan aims to support a wide range of ARM-based devices based on Cortex-A, an
 
 Moreover, several promising devices are being developed by third parties (such as the USB Armory MK-II) that will be available in the near future. Our reference software design and implementation will be easy to port.
 
- In this sense, our project intends to give validators a range of secure alternatives to running signing services which is not tied to any specific manufacturer or board designer. By open sourcing the software and providing a few examples running on ARM-based devices, we hope to encourage manufacturers to develop specific products for this market.
+In this sense, our project intends to give validators a range of secure alternatives to running signing services which is not tied to any specific manufacturer or board designer. By open sourcing the software and providing a few examples running on ARM-based devices, we hope to encourage manufacturers to develop specific products for this market.
 
 #### Phase 2: Cortex-M
 
