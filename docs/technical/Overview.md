@@ -1,6 +1,6 @@
 # Quick Overview
 
-::: tip Thanks!
+:::tip Thanks!
 The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
 
 ![Grant](/img/web3grant.png)
@@ -32,7 +32,7 @@ At the moment of this writing, we recommend testing using the following boards:
 [5]: https://www.mouser.ch/ProductDetail/NXP-Semiconductors/MCIMX8M-EVKB?qs=%2Fha2pyFaduhMHVqoUq4oRfF9hEn3wIuiNQ14GBmEQkNua8L5aW7Edg%3D%3D
 [6]: https://www.digikey.ch/products/en?keywords=STM32MP157C-DK2
 
-::: tip If you have one of these boards
+:::tip If you have one of these boards
 Click [here to start connecting your hardware](HardwareSetup.md)
 :::
 
@@ -56,7 +56,7 @@ We assume you are using Ubuntu. Other OSs (MacOS/Windows) are not formally suppo
 
 ### Creating the image
 
-::: tip
+:::tip
 Building an image can take significant time. For the next milestone, we are working on:
 - Minimal images (< 10 MB)
 - A distributed build setup (scheduler, builder, clients) based on sccache
@@ -84,7 +84,7 @@ We provide more detailed information [here](BSP_Build.md) in case you want to un
 
 ### Signing the image
 
-::: warning
+:::warning
 Enabling secure boot in a device is an irreversible process. We recommend skipping this step for now.
 
 At the moment, we can demonstrate the functionality but simplified tools are part of the next milestone. 
@@ -106,7 +106,7 @@ In this section, we demonstrate a _"hello world"_ (`hello_rustee`) implementatio
 
 When an image is built, we already include `hello_rustee` so you just need to login into your device to test OPTEE.
 
-::: tip How does the actual development process looks like?
+:::tip How does the actual development process looks like?
 If you are interested, more information about the process, tooling and testing can be found [here](HelloRustee.md)
 ::: 
 

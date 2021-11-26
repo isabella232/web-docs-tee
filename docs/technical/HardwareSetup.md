@@ -1,6 +1,6 @@
 # Hardware Setup
 
-::: tip Thanks!
+:::tip Thanks!
 The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
 
 ![Docusaurus](/img/web3grant.png)
@@ -14,7 +14,7 @@ In this section, we provide very brief instructions on how to plug you device to
 
 ### STM32MP157C-DK2
 
-::: tip FULL SUPPORT 
+:::tip FULL SUPPORT 
 This device/board is currently fully supported
 :::
 
@@ -32,7 +32,7 @@ Using this device is very simple. Connect:
 
 ### NXP MCIMX8M-EVKB
 
-::: tip FULL SUPPORT
+:::tip FULL SUPPORT
 This device/board is currently fully supported
 :::
 
@@ -48,7 +48,7 @@ Connect the following cables:
 
 ### Compulab SBC-iMX8M-Mini
 
-::: warning SUPPORTED (EXISTING ISSUES)
+:::warning SUPPORTED (EXISTING ISSUES)
 The board is supported but we have detected issues in related software components
 :::
 
@@ -61,7 +61,7 @@ The board is supported but we have detected issues in related software component
 
 ### TechNexion PICOPIIMX8M-R40
 
-::: warning SUPPORTED
+:::warning SUPPORTED
 Work in progress
 :::
 
@@ -79,7 +79,7 @@ Connect:
 
 ![STM32MP157C-BAW](/img/STM32MP157C_baw.png)
 
-::: tip
+:::tip
 Please refer to [Bytes at work documentation](https://www.bytesatwork.io/wp-content/uploads/2019/07/Datasheet_byteDEVKIT_STM32MP1-V1_1-1.pdf) for more information
 :::
 

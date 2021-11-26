@@ -4,7 +4,7 @@
 
 ### Overview
 
-::: warning
+:::warning
 Enabling secure boot in a device is an irreversible process. We recommend to skip actual testing for now.
 
 If you make a mistake or lose the keys, you will brick your device.
@@ -54,7 +54,7 @@ STM32CubeProgrammer is an official package from ST. It includes a tool for key-p
 
 At the moment of this writing, the key generation tool is broken on Linux. ST support suggests using a Windows PC instead. Unfortunately, there is no official open-source alternative of this tool.
 
-::: tip Plan
+:::tip Plan
 We are analysing how to provide an alternative signer based on Ledger Nano S device as part of the next Milestone. This will greatly simplify the key provision and signing process. Moreover, it provides additional security with respect to key storage.
 :::
 

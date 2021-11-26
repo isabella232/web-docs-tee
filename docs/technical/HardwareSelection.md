@@ -1,6 +1,6 @@
 # Hardware Selection
 
-::: tip Thanks! 
+:::tip Thanks! 
 The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
 
 ![Docusaurus](/img/web3grant.png)

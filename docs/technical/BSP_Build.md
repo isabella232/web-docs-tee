@@ -1,6 +1,6 @@
 # Building images
 
-::: warning
+:::warning
 We are currently working on a new and even more efficient building process.
 
 These instructions will be superceded during milestone 2.

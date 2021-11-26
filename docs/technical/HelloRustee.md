@@ -35,7 +35,7 @@ or
 make build_v8
 ```
 
-::: warning
+:::warning
 
 - The first time may take some time to download the development containers and launch qemu.
 
@@ -109,13 +109,13 @@ the advantage is that you can now,:
 - Build in your host using `make build_v7`
 - Run in QEMU using `/mnt/scripts/run_app.sh`
 
-::: tip Why run_app.sh?
+:::tip Why run_app.sh?
 When you build again, before running the host app, you need to install the TA.
 
 TAs are binaries in the form {UUID}.ta that need to be placed at `/lib/optee_armtz/`
 :::
 
-::: tip How to exit the emulator?
+:::tip How to exit the emulator?
 In order to exit the emulator, you can type `q` in the terminal you used to launch qemu:
 ```
 QEMU 3.0.93 monitor - type 'help' for more information

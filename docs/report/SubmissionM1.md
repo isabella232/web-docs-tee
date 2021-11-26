@@ -37,7 +37,7 @@ The testing guide will be updated and adjusted as we make progress.
 
 ### 1. Hardware selection
 
-::: tip Milestone requirement
+:::tip Milestone requirement
 Select two hardware platforms (from different providers) to use as a proof-of-concept.
 :::
 
@@ -76,7 +76,7 @@ We provide more details in the following links:
 
 ### 2. Feasibility
 
-::: tip Milestone requirement
+:::tip Milestone requirement
 Minimal implementations for each selected board to demonstrate feasibility.
 :::
 
@@ -109,7 +109,7 @@ In milestone 2, we will deliver better tooling to simplify this process.
 
 ### 3. Hello World + Development process
 
-::: tip Milestone requirement
+:::tip Milestone requirement
 
 - Hello-World examples and basic configuration to demonstrate Secure Boot and TrustZone usage.
 :::
@@ -123,7 +123,7 @@ The current Yocto images contain "hello_rustee" [GitHub](https://github.com/Zond
 
 The corresponding instructions are available in the [testing guide](https://zondax.github.io/zondbox-docs/Overview.html#hello-rustee)
 
-::: tip Milestone requirement
+:::tip Milestone requirement
 
 - Detailed description of the development and testing process.
 
