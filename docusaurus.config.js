@@ -15,6 +15,7 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'zondax', // Usually your GitHub org/user name.
   projectName: 'zondax-tee', // Usually your repo name.
+  noIndex: true,
 
   presets: [
     [
