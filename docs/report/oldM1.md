@@ -1,6 +1,6 @@
 ---
-title: Milestone 1
-sidebar_position: 2
+title: OLD M1
+sidebar_position: 5
 ---
 
 ## Research and Prototyping
@@ -27,7 +27,7 @@ From an architectural overview, we considered the following aspects:
 
 ### Testing guide
 
-We invite you to follow the [tutorial/testing guide](../tutorial/intro).
+We invite you to follow the [tutorial/testing guide](../testing/intro).
 
 :::warning
 The testing guide will be updated and adjusted as we make progress.
