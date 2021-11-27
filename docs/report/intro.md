@@ -19,7 +19,7 @@ We believe that an affordable reference open-source software/hardware stack base
 - Provide a Ledger Nano S provisioning application to image signing keys.
 
 :::info More information
-Click [here](Description.md) for additional information about the original project proposal.
+Click [here](intro#original-description) for additional information about the original project proposal.
 :::
 
 ## Where to buy test devices
