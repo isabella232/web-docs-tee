@@ -1,9 +1,8 @@
 # Hardware Selection
 
-:::tip Thanks! 
-The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
+:::info The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
 
-![Docusaurus](/img/web3grant.png)
+<img src="/img/web3grant.png" alt="drawing" width="300"/>
 :::
 
 ### Selection process
