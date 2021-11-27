@@ -1,10 +1,5 @@
 # Hardware Selection
 
-:::info The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
-
-<img src="/img/web3grant.png" alt="drawing" width="300"/>
-:::
-
 ### Selection process
 
 We are evaluating and working with multiple architectures and manufacturers at this moment. We are taking into account several factors including but not limited to:

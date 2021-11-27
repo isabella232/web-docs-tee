@@ -5,11 +5,6 @@ sidebar_position: 1
 
 # Quick Overview
 
-:::info The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
-
-<img src="/img/web3grant.png" alt="drawing" width="300"/>
-:::
-
 This project provides a _hardware + software stack_ targeting blockchain applications such as PoS validation, remote signers, etc.
 
 From an architectural overview, we cover the following aspects:
@@ -37,7 +32,7 @@ At the moment of this writing, we recommend testing using the following boards:
 [6]: https://www.digikey.ch/products/en?keywords=STM32MP157C-DK2
 
 :::tip If you have one of these boards
-Click [here to start connecting your hardware](HardwareSetup.md)
+Click [here to start connecting your hardware](HardwareSetup.mdx)
 :::
 
 _Note: We plan to expand this list in the near future_

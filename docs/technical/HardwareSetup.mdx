@@ -1,19 +1,43 @@
 # Hardware Setup
 
-:::info The following project has been funded by the [Web3 Foundation](https://web3.foundation/).
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<img src="/img/web3grant.png" alt="drawing" width="300"/>
+:::note Using tabs could be useful
 :::
+
+<Tabs>
+    <TabItem value="dk2" label="STM32MP157C-DK2" default>
+        Content for STM32MP157C-DK2
+    </TabItem>
+    <TabItem value="MCIMX8M" label="NXP MCIMX8M-EVKB">
+        Content for NXP MCIMX8M-EVKB
+    </TabItem>
+    <TabItem value="iMX8M-Mini" label="SBC-iMX8M-Mini">
+        Content for SBC-iMX8M-Mini
+    </TabItem>
+</Tabs>
+
+----
+
+```rust
+fn main() {
+    // Statements here are executed when the compiled binary is called
+
+    // Print text to the console
+    println!("Hello World!");
+}
+```
 
 ## Connecting your hardware
 
-Support for several devices will be added over time. 
+Support for several devices will be added over time.
 
-In this section, we provide very brief instructions on how to plug you device to run a set of initial tests. 
+In this section, we provide very brief instructions on how to plug you device to run a set of initial tests.
 
 ### STM32MP157C-DK2
 
-:::tip FULL SUPPORT 
+:::tip FULL SUPPORT
 This device/board is currently fully supported
 :::
 
@@ -66,7 +90,7 @@ Work in progress
 
 ### byteDEVKIT (Bytes at work)
 
-::: danger PENDING SUPPORT - BOOT ISSUES BEING DIAGNOSED
+:::danger PENDING SUPPORT - BOOT ISSUES BEING DIAGNOSED
 Support for this board is still work in progress
 :::
 
@@ -84,7 +108,7 @@ Please refer to [Bytes at work documentation](https://www.bytesatwork.io/wp-cont
 
 ### Toradex Apalis iMX8 QuadMax
 
-::: danger PENDING SUPPORT - ISSUES BEING DIAGNOSED
+:::danger PENDING SUPPORT - ISSUES BEING DIAGNOSED
 Support for this board is still in progress
 :::
 

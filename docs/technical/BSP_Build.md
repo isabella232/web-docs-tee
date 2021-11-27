@@ -3,7 +3,7 @@
 :::warning
 We are currently working on a new and even more efficient building process.
 
-These instructions will be superceded during milestone 2.
+These instructions will be superseded during milestone 2.
 :::
 
 These tests will concentrate on SD Card images, however, some of the boards support other alternatives such as eMMC or SATA drives.
