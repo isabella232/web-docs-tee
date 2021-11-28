@@ -1,140 +1,95 @@
 # Building images
 
-:::warning
-We are currently working on a new and even more efficient building process.
+ We support two boards:
 
-These instructions will be superseded during milestone 2.
-:::
+| Model              |
+| ------------------- |
+| STM32MP157F-DK2     |
+| 8MMINILPD4-EVKB     |
 
-These tests will concentrate on SD Card images, however, some of the boards support other alternatives such as eMMC or SATA drives.
+
+The following instructions will explain in detail how to use yocto in order
+to build SD Cart images for each board. The images contain the secure application for signing and key generation using a trusted execution environment 
+base on the OPTEE standard.
 
 ## Preconditions
 
 - We assume you are using Ubuntu. Other OSs (MacOS/Windows) are not formally supported.
 - Install Docker [Link](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-- Build or pull the container with the build environment
-  - `make pull_docker` to retrieve the latest published container image
-  - `make build_docker` to build the container image
+- The build process is expensive and would require all your computer
+  resources, we assume you are using the computer exclusively to build the
+  image.
 
-## Logging in
+## Common steps
+First clone our entry point project that contains some scripts that take care of getting the packages and recipes to build 
+an image for any of the supported boards:
 
-The *shared* directory can be used to exchange information with the build container.
-
-To login into the container use (depending on your hardware):
-
-  | Model                   | Command                        |
-  | ----------------------- | ------------------------------ |
-  | STM32MP157C-DK2         | `make build_image_dk2`         |
-  | NXP MCIMX8M-EVKB        | `make build_image_imx8mq`      |
-  | Compulab SBC-iMX8M-Mini | `make build_image_imx8mq-compulab`      |
-  | BytesAtWork STM32MP157C | `make build_image_bytesatwork` |
-  | Toradex Apalis i.MX8QM  | `make build_image_apalis`      |
-
-## Add layers
-
-Before you start building please let bitbake know about meta-zondax layer:
-
-```shell
-bitbake-layers add-layer ../layers/meta-zondax
+```bash
+git clone git@github.com:Zondax/tee-images.git
 ```
 
-Then `meta-zondax` layer should be listed in the layer list:
+then switch to the honister branch
 
-```
-bitbake-layers show-layers
-NOTE: Starting bitbake server...
-layer                 path                                      priority
-==========================================================================
-meta-python           /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-python  7
-meta-oe               /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-oe  6
-meta-oe               /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-oe  6
-meta-gnome            /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-gnome  7
-meta-xfce             /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-xfce  7
-meta-initramfs        /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-initramfs  8
-meta-multimedia       /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-multimedia  6
-meta-networking       /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-networking  5
-meta-webserver        /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-webserver  6
-meta-filesystems      /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-filesystems  6
-meta-perl             /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-perl  6
-meta-python           /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-openembedded/meta-python  7
-meta-st-stm32mp       /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-st/meta-st-stm32mp  6
-meta-qt5              /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-qt5  7
-meta-st-openstlinux   /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-st/meta-st-openstlinux  5
-meta                  /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/openembedded-core/meta  5
-meta-zondax           /home/zondax/shared/zondax-meta-openstlinux-4.19-thud-mp1/layers/meta-zondax  7
+```bash
+cd tee-images
+git checkout honister
 ```
 
-To check what optee-related projects will be built for this image recipe, run:
+update the manifest
 
-```shell
-$ bitbake -g st-image-core && cat pn-buildlist | grep -ve "native" | sort | uniq
-...
-opkg-utils
-optee-client
-optee-helloworld
-optee-os-stm32mp
-...
+```bash
+make manifest force
 ```
 
-## Build
+Once the manifest is updated we can start building the linux-base operating system that would run on the board you selected. 
+It is important to mention that this step will build a full linux image containing everything is needed to run our optee-base application.
+It could take a lot of resources and time depending on your computer.
 
-You can build the full/default image:
+## STM32MP157F-DK2
 
+To start building a DK2 image run the following command:
+```bash
+make build dk2
 ```
-bitbake st-image-weston
-```
-
-or try something leaner instead
-
-```
-bitbake st-image-core
-```
-
-## Create SD-card image
-
-There is a script to build you sdcard image at
-`$IMAGEDIR/scripts/create_sdcard_from_flashlayout.sh` and many layouts that you
-can use.
-
-You can list layouts with:
-
-```
-ls $IMAGEDIR/flashlayout*/
+Once the process is completed the full image is located in
+```bash
+shared/images/dk2/FlashLayout_sdcard_stm32mp157f-dk2-optee.raw
 ```
 
-As an example, you can run:
+## 8MMINILPD4-EVKB
+There is an unconventional raw image for this board, and it seems we
+need a third-party tool. [Here](https://community.nxp.com/t5/i-MX-Processors/imx8m-mini-evk-flashing-images-to-SD-card/m-p/1078290) we can find more information on how to
+flash a SD Card. Further steps are require on this regards.
+:::warning
+TODO!!
+:::
 
-```
-$IMAGEDIR/scripts/create_sdcard_from_flashlayout.sh $IMAGEDIR/flashlayout_st-image-weston/FlashLayout_sdcard_stm32mp157c-dk2-optee.tsv
-```
-
-this will generate an image:
-
-```
-......
-
-RAW IMAGE generated: /home/zondax/shared/openstlinux-4.19-thud-mp1-19-10-09/build-openstlinuxweston-stm32mp1/tmp-glibc/deploy/images/stm32mp1/flashlayout_st-image-weston/../flashlayout_st-image-weston_FlashLayout_sdcard_stm32mp157c-dk2-optee.raw
-
-WARNING: before to use the command dd, please umount all the partitions associated to SDCARD.
-
-    sudo umount `lsblk --list | grep mmcblk0 | grep part | gawk '{ print $7 }' | tr '\n' ' '`
-
-To put this raw image on sdcard:
-    sudo dd if=/home/zondax/shared/openstlinux-4.19-thud-mp1-19-10-09/build-openstlinuxweston-stm32mp1/tmp-glibc/deploy/images/stm32mp1/flashlayout_st-image-weston/../flashlayout_st-image-weston_FlashLayout_sdcard_stm32mp157c-dk2-optee.raw of=/dev/mmcblk0 bs=8M conv=fdatasync status=progress
-```
 
 ## Flashing your SD-card
 
-Now you can go outside the container and run:
-
-> Depending on your setup, it is possible that `/dev/mmcblk0` is not the correct
-> device
->
-> instead of `/dev/mmcblk0` it is possible that you need to use something like
-> `/dev/sd?` if you are using card readers, etc.
-
+The next step is to burn the image on the SD Card which should be at least 4 GB.
+Depending on your setup, it is possible that `/dev/mmcblk0` is not the correct
+device, instead of `/dev/mmcblk0` it is possible that you need to use something like
+`/dev/sd?` if you are using card readers, etc. In order to be sure how the card is prefixed on your setup, run the
+following command
+```bash
+df -h
 ```
-sudo dd if=../flashlayout_st-image-weston/../flashlayout_st-image-weston_FlashLayout_sdcard_stm32mp157c-dk2-optee.raw of=/dev/mmcblk0 bs=8M conv=fdatasync status=progress oflag=direct
+Now we can flash the SD Card using DD.
+:::warning 
+before to use the command dd, please unmount all the partitions associated to SDCARD.
+```bash
+sudo umount `lsblk --list | grep mmcblk0 | grep part | gawk '{ print $7 }' | tr '\n' ' '`
 ```
+:::
+### STM32MP157F-DK2
+Just pass the path to the dk2 raw image to DD:
 
-Notice the `oflag=direct` that skips catching and will show progress all the time.
+```bash
+cd shared/images/dk2
+sudo dd if=FlashLayout_sdcard_stm32mp157f-dk2-optee.raw of=/dev/mmcblk2 bs=8M conv=fdatasync status=progress
+```
+### 8MMINILPD4-EVKB
+:::warning
+TODO!!
+:::
