@@ -6,12 +6,18 @@ import TabItem from '@theme/TabItem';
 :::note Using tabs could be useful
 :::
 
+:::note 
+Normal Markdown seems to not work inside table sections????
+:::
+
 <Tabs>
-    <TabItem value="dk2" label="STM32MP157C-DK2" default>
-        Content for STM32MP157C-DK2
+    <TabItem value="dk2" label="STM32MP157F-DK2" default>
+        ```bash
+        echo "NO BASH CODE SECTION??"
+        ```
     </TabItem>
-    <TabItem value="MCIMX8M" label="NXP MCIMX8M-EVKB">
-        Content for NXP MCIMX8M-EVKB
+    <TabItem value="iMX8MM" label="8MMINILPD4-EVKB">
+        Content for 8MMINILPD4-EVKB
     </TabItem>
     <TabItem value="iMX8M-Mini" label="SBC-iMX8M-Mini">
         Content for SBC-iMX8M-Mini
@@ -20,22 +26,12 @@ import TabItem from '@theme/TabItem';
 
 ----
 
-```rust
-fn main() {
-    // Statements here are executed when the compiled binary is called
-
-    // Print text to the console
-    println!("Hello World!");
-}
-```
 
 ## Connecting your hardware
 
-Support for several devices will be added over time.
-
 In this section, we provide very brief instructions on how to plug you device to run a set of initial tests.
 
-### STM32MP157C-DK2
+### STM32MP157F-DK2
 
 :::tip FULL SUPPORT
 This device/board is currently fully supported
@@ -45,86 +41,91 @@ This device/board is currently fully supported
 
 Using this device is very simple. Connect:
 
-- Power supply
-- Ethernet (not used in this specific test)
+- plug-in the SD Card in the board slot.
+- Ethernet
 - Connect a USB cable to the ST-Link port
+- Power supply
 
 ![STM32MP157C-DK2](/img/STM32MP157C-DK2_connections.png)
 
-[ST documentation](https://wiki.st.com/stm32mpu/wiki/Getting_started/STM32MP1_boards/STM32MP157C-DK2/Let%27s_start/Unpack_the_STM32MP157C-DK2_board#) is excellent and you can find plenty of information there.
+After the power supply is connected the device will start booting. At
+this point we can attach a shell session to the device's ST-Link port
+using a program called [Minicom](https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom). If it is not already installed on your system, run the following commands
+```bash
+sudo apt-get install minicom
+```
+then try to connect to the default serial port:
+```bash
+sudo minicom -D /dev/ttyACM0
+```
+:::note 
+This port name may change depending on your setup, another variant is
+**ttySTM0**
+:::
+if the boot process goes fine, you should see something like is shown
+below in the Minicom terminal, otherwise there might be a problem during
+the boot stage on your device.
 
-### NXP MCIMX8M-EVKB
+```bash
+[    5.540230] stm32-dwmac 5800a000.ethernet eth0: IEEE 1588-2008 Advanced Timed
+[    5.548979] stm32-dwmac 5800a000.ethernet eth0: registered PTP clock         
+[    5.555785] stm32-dwmac 5800a000.ethernet eth0: configuring for phy/rgmii-ide
+                                                                                
+Poky (Yocto Project Reference Distro) 3.4 stm32mp1 /dev/ttySTM0                 
+                                                                                
+stm32mp1 login: D/TA:  TA_CreateEntryPoint:8 Create entry point                 
+Creating                                                                        
+D/TA:  TA_OpenSessionEntryPoint:21 Open Session entry point                     
+Opening session                                                                 
+[   33.768739] usb33: supplied by vdd_usb                                       
+[   33.771193] vref: supplied by vdd                                            
+[   33.774503] vref: disabling                                                  
+[   33.777169] vdda: disabling                                                  
+                                                                                
+Poky (Yocto Project Reference Distro) 3.4 stm32mp1 /dev/ttySTM0                 
+                                                                                
+stm32mp1 login: 
+```
+in case you do not see the login line, press __enter__ , then as user
+type **root** and no password is required.
 
-:::tip FULL SUPPORT
-This device/board is currently fully supported
+[ST documentation](https://wiki.st.com/stm32mpu/wiki/Getting_started/STM32MP1_boards/STM32MP157x-DK2/Let%27s_start) is excellent and you can find plenty of information there.
+
+### 8MMINILPD4-EVKB
+:::warning
+TODO!!
 :::
 
-![MCIMX8M-EVKB](/img/imx8m.png)
+## Check application service
+The last step is to check if the application service is running on the
+device, to do so execute the following command in the minicom port:
+```bash
+ps
+```
+the output might look like:
 
-Connect the following cables:
-
-- Power supply (DC Jack 12 V)
-- Ethernet (not used in this test)
-- Connect a USB cable to the debug port
-
-- turn on the device by using the power switch
-
-### Compulab SBC-iMX8M-Mini
-
-:::warning SUPPORTED (EXISTING ISSUES)
-The board is supported but we have detected issues in related software components
+```bash
+ 247 root      4304 S    sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups  
+  250 root     11116 S    /usr/sbin/tee-supplicant -d                           
+  252 root         0 IW<  [optee_bus_scan]                                      
+  258 root     10584 S    /usr/sbin/tee-substrate-service                       
+  264 root      2328 S    /sbin/syslogd -n -O /var/log/messages                 
+  269 root      2328 S    /sbin/klogd -n                                        
+  272 root      2328 S    /usr/sbin/ifplugd                                     
+  277 root      2328 S    {start_getty} /bin/sh /bin/start_getty 115200 ttySTM  
+  278 root      2328 S    /sbin/getty 38400 tty1                                
+  280 root      2416 S    -sh                                                   
+  323 root         0 IW   [kworker/1:1-eve]                                     
+  344 root         0 IW   [kworker/1:0-eve]                                     
+  357 root      2416 R    ps                                                    
+root@stm32mp1:~# 
+```
+The __ps__ command lists the processes that are running in the device, and you
+must see the application process called __tee-substrate-service__.
+:::note 
+The tee-substrate-service is a demon process that waits for requests
+through __tcp://localhost:39946__, check [docs](../testing/intro.md) to know how to ensure
+the service does what is supposed to do.
 :::
 
-![imx8m-mini](/img/compulab-imx8m-mini.png)
 
-- Make sure jumpers E6, E9, and E14 are populated (default state).
-- Make sure jumpers E4, E7, E8 and E15 are removed (default state).
-- Connect a standard USB cable (included in the kit) between your host PC and the evaluation kit micro-USB2.0 connector P13.
-- Connect the DC 12V power supply adapter (included) to main DC power connector J2.
-
-### TechNexion PICOPIIMX8M-R40
-
-:::warning SUPPORTED
-Work in progress
-:::
-
-### byteDEVKIT (Bytes at work)
-
-:::danger PENDING SUPPORT - BOOT ISSUES BEING DIAGNOSED
-Support for this board is still work in progress
-:::
-
-Connect:
-
-  - Power supply
-  - Ethernet (not used in this test)
-  - Console cable in the 6 pin connector near the Ethernet port
-
-![STM32MP157C-BAW](/img/STM32MP157C_baw.png)
-
-:::tip
-Please refer to [Bytes at work documentation](https://www.bytesatwork.io/wp-content/uploads/2019/07/Datasheet_byteDEVKIT_STM32MP1-V1_1-1.pdf) for more information
-:::
-
-### Toradex Apalis iMX8 QuadMax
-
-:::danger PENDING SUPPORT - ISSUES BEING DIAGNOSED
-Support for this board is still in progress
-:::
-
-- We expect you to have the following hardware:
-
-  - Carrier Board: Ixora
-  - SoM: Apalis i.MX8QM
-  - Heatsink (this is strongly recommended)
-
-- Connect the SoM (apalis) into carrier board (ixora)
-
-![Apalix + Ixora](/img/toradex_2.jpg)
-
-- Apply the heatsink and screws
-
-![Apalix + Ixora](/img/toradex_3.jpg)
-
-- Connect cables ( power, ethernet, UART)
-- Power up

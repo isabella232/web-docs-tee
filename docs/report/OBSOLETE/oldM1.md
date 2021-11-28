@@ -27,7 +27,7 @@ From an architectural overview, we considered the following aspects:
 
 ### Testing guide
 
-We invite you to follow the [tutorial/testing guide](../testing/intro).
+<!--We invite you to follow the [tutorial/testing guide](../testing/intro).-->
 
 :::warning
 The testing guide will be updated and adjusted as we make progress.
