@@ -1,0 +1,70 @@
+---
+title: Flashing SDCard
+sidebar_position: 32
+---
+
+:::tip image URLs
+Can we have prebuilt images? and post the URLs here?
+:::
+
+The next step is to burn the image on the SD Card which should be at least 4 GB.
+
+### Balena Etcher
+
+A quick alternative to store images in SD cards is to use Balena Etcher.
+
+Please install Balena Etcher from [here](https://www.balena.io/etcher/)
+
+Flashing to the SD card is very simple:
+
+<img src="/img/etcher.png" alt="drawing" width="640"/>
+
+1. Select the image
+2. Select the output device where your SD is located
+3. Click Flash
+
+<img src="/img/etcher2.png" alt="drawing" width="640"/>
+
+4. Wait until the process finishes.
+
+5. Done!! :tada:
+
+<img src="/img/etcher3.png" alt="drawing" width="640"/>
+
+### Manual process
+
+if you prefer to follow a manual process.
+
+Depending on your setup, it is possible that `/dev/mmcblk0` is not the correct
+device, instead of `/dev/mmcblk0` it is possible that you need to use something like `/dev/sd?` if you are using card readers, etc. 
+In order to be sure how the card is prefixed on your setup, run the following command
+
+```sh
+df -h
+```
+
+Now we can flash the SD Card using DD.
+
+:::warning
+before to use the command dd, please unmount all the partitions associated to SDCARD.
+
+```sh
+sudo umount `lsblk --list | grep mmcblk0 | grep part | gawk '{ print $7 }' | tr '\n' ' '`
+```
+
+:::
+
+### STM32MP157F-DK2
+
+Just pass the path to the dk2 raw image to DD:
+
+```bash
+cd shared/images/dk2
+sudo dd if=FlashLayout_sdcard_stm32mp157f-dk2-optee.raw of=/dev/mmcblk2 bs=8M conv=fdatasync status=progress
+```
+
+### 8MMINILPD4-EVKB
+
+:::warning
+TODO!!
+:::
