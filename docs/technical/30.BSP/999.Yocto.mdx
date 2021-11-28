@@ -1,0 +1,77 @@
+---
+title: Advanced
+sidebar_position: 999
+---
+
+:::warning ATTENTION
+These steps are **NOT** required and may result in broken build if not used properly
+:::
+
+### Build or pull the container with the build environment
+
+To retrieve the latest published container image
+
+```bash
+make docker
+```
+
+### Pull latest repo manifest
+
+To retrieve the latest published container image
+
+```bash
+make manifest
+```
+
+This command wraps `repo` tool and fetches the latest changes and updates of
+the working files in your local environment, essentially accomplishing git fetch
+across all Git repositories listed in [default.xml](https://github.com/Zondax/zondbox-manifest)
+manifest.
+
+### Adjusting existing recipe
+
+- If you're familiar with Yocto build system and want to run all Yocto-specific
+commands manually, you can login into the docker container using this command:
+
+```bash
+make shell <target> # target: qemu, qemu8, dk2
+```
+
+Then follow steps described in this [manual](https://wiki.yoctoproject.org/wiki/TipsAndTricks/Patching_the_source_for_a_recipe)
+
+- If you're not familiar with Yocto, you can use existing wrappers which
+is supposed to make simplify things:
+
+```bash
+make workspace <target> <recipe-name>
+```
+
+This will fetch the sources for the recipe and unpack them to a
+`shared/zondbox-distro/build/workspace/sources/<recipename>` directory and
+initialise it as a git repository if it isn't already one. 
+
+You can make any changes to the sources, make new commits, switch branches/remotes etc.
+
+When you want rebuild the images, the sources from your workspace will be
+used instead the `SRC_URI` value specified in recipe.
+
+#### Creating new recipe
+
+To create a new example recipe:
+
+```bash
+cd shared/zondbox-distro/meta-zondax
+mkdir recipes-example
+cd recipes-example
+mkdir bbexample
+cd bbexample
+wget https://raw.githubusercontent.com/DynamicDevices/meta-example/master/recipes-example/bbexample/bbexample_1.0.bb
+```
+
+The recipe will then be picked up by bitbake and you can build the recipe.
+
+Login into docker container using `make shell <target>` command, then:
+
+```bash
+bitbake bbexample
+```
