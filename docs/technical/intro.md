@@ -78,7 +78,7 @@ Building an image can take significant time. For the next milestone, we are work
 - Now put the SD card in your device, reboot and enjoy
 
 :::tip
-We provide more detailed information [here](BSP_Build.md) in case you want to understand what is actually going on in our scripts. Still, this is in active development and expect this detailed instructions to change in the near future.
+We provide more detailed information [here](BSP_Build) in case you want to understand what is actually going on in our scripts. Still, this is in active development and expect this detailed instructions to change in the near future.
 :::
 
 ### Signing the image
