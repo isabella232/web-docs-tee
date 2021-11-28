@@ -1,0 +1,25 @@
+---
+title: Qemu
+sidebar_position: 39
+---
+
+## Build
+
+There are two possible targets
+
+- `qemu`: for ARMv7
+- `qemu8`: for ARMv8
+
+While all examples will concentrate on ARMv7, the other targets are available too.
+
+Build the image is as simple as running:
+
+```bash
+make build qemu
+```
+
+:::tip
+This may take a while the first time.
+:::
+
+It will prepare an image similar to the OS that is being deployed in devices.
