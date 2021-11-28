@@ -1,0 +1,47 @@
+---
+title: Overview
+sidebar_position: 30
+---
+
+The following instructions will explain in detail how to use yocto in order to build SD Card images for each board.
+The images contain the secure application for signing and key generation using a trusted execution environment based on the OPTEE standard.
+
+:::info
+Board supported:
+
+- STM32MP157F-DK2 (Add link to hardware description and connections)
+- 8MMINILPD4-EVKB (Add link to hardware description and connections)
+
+:::
+
+## Preconditions
+
+- We assume you are using Ubuntu. Other OSs (MacOS/Windows) **are not** formally supported.
+- Install Docker [Link](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- The build process is time consuming and will require all your computer resources, we assume you are using the computer exclusively to build the
+  image.
+
+## Common steps
+
+First clone our entry point project that contains some scripts that take care of getting the packages and recipes to build an image for any of the supported boards:
+
+```bash
+git clone git@github.com:Zondax/tee-images.git
+```
+
+then switch to the honister branch
+
+```bash
+cd tee-images
+git checkout honister
+```
+
+update the manifest
+
+```bash
+make manifest force
+```
+
+Once the manifest is updated we can start building the linux-base operating system that would run on the board you selected.
+It is important to mention that this step will build a full linux image containing everything is needed to run our optee-base application.
+It could take a lot of resources and time depending on your computer.
