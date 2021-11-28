@@ -21,13 +21,17 @@ Using this device is very simple. Connect:
 After the power supply is connected the device will start booting. At
 this point we can attach a shell session to the device's ST-Link port
 using a program called [Minicom](https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom). If it is not already installed on your system, run the following commands
+
 ```bash
 sudo apt-get install minicom
 ```
+
 then try to connect to the default serial port:
+
 ```bash
 sudo minicom -D /dev/ttyACM0
 ```
+
 :::note 
 This port name may change depending on your setup, another variant is
 **ttySTM0**
@@ -36,7 +40,7 @@ if the boot process goes fine, you should see something like is shown
 below in the Minicom terminal, otherwise there might be a problem during
 the boot stage on your device.
 
-```bash
+```text
 [    5.540230] stm32-dwmac 5800a000.ethernet eth0: IEEE 1588-2008 Advanced Timed
 [    5.548979] stm32-dwmac 5800a000.ethernet eth0: registered PTP clock         
 [    5.555785] stm32-dwmac 5800a000.ethernet eth0: configuring for phy/rgmii-ide
@@ -56,22 +60,20 @@ Poky (Yocto Project Reference Distro) 3.4 stm32mp1 /dev/ttySTM0
                                                                                 
 stm32mp1 login: 
 ```
+
 in case you do not see the login line, press __enter__ , then as user
 type **root** and no password is required.
 
 [ST documentation](https://wiki.st.com/stm32mpu/wiki/Getting_started/STM32MP1_boards/STM32MP157x-DK2/Let%27s_start) is excellent and you can find plenty of information there.
 
-### 8MMINILPD4-EVKB
-:::warning
-TODO!!
-:::
-
 ## Check application service
 The last step is to check if the application service is running on the
 device, to do so execute the following command in the minicom port:
+
 ```bash
 ps
 ```
+
 the output might look like:
 
 ```bash
@@ -90,12 +92,12 @@ the output might look like:
   357 root      2416 R    ps                                                    
 root@stm32mp1:~# 
 ```
+
 The __ps__ command lists the processes that are running in the device, and you
 must see the application process called __tee-substrate-service__.
-:::note 
+
+:::note
 The tee-substrate-service is a demon process that waits for requests
-through __tcp://localhost:39946__, check [docs](../testing/intro.md) to know how to ensure
+through __tcp://localhost:39946__, check [docs](../../testing/intro) to know how to ensure
 the service does what is supposed to do.
 :::
-
-
