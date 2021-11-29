@@ -3,9 +3,18 @@ title: 8MMINILPD4-EVKB
 sidebar_position: 32
 ---
 
-There is an unconventional raw image for this board, and it seems we
-need a third-party tool. [Here](https://community.nxp.com/t5/i-MX-Processors/imx8m-mini-evk-flashing-images-to-SD-card/m-p/1078290) we can find more information on how to
-flash a SD Card. Further steps are require on this regards.
-:::warning
-TODO!!
+To start building a DK2 image run the following command:
+
+:::info
+This may take a while the first time.
 :::
+
+```bash
+make build imx8mm-evk
+```
+
+Once the process is completed the full image is located in
+
+```bash
+shared/images/imx8mm-evk/core-image-minimal-imx8mm-lpddr4-evk.wic
+```
