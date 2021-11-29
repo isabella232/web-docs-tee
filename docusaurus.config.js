@@ -17,6 +17,8 @@ const config = {
     projectName: 'zondax-tee', // Usually your repo name.
     noIndex: true,
 
+    plugins: [require.resolve('docusaurus-lunr-search')],
+
     presets: [
         [
             '@docusaurus/preset-classic',
