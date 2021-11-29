@@ -29,19 +29,15 @@ First clone our entry point project that contains some scripts that take care of
 git clone git@github.com:Zondax/tee-images.git
 ```
 
-then switch to the honister branch
+then switch to the honister branch and update the manifest
 
 ```bash
 cd tee-images
-git checkout honister
-```
-
-update the manifest
-
-```bash
 make manifest force
 ```
 
 Once the manifest is updated we can start building the linux-base operating system that would run on the board you selected.
+
 It is important to mention that this step will build a full linux image containing everything is needed to run our optee-base application.
-It could take a lot of resources and time depending on your computer.
+
+It can take a lot of resources and time depending on your computer.
