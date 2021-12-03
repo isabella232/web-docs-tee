@@ -3,4 +3,28 @@ title: Hardware Setup
 sidebar_position: 20
 ---
 
-In this section, we provide very brief instructions on how to plug you device to run a set of initial tests.
+In this section you can read the instruction that tells you how to setup your board and how to log to your device using Minicom.
+Once you know how to use Minicom, you can configure a __SSH__ connection
+to your board as indicated in the note bellow.
+:::note
+After reading the documentation here on how to setup your hardware, you
+should know how to use __Minicom__. But you can also use __SSH__ to communicate with your device. 
+follow the instruction bellow to login in your device using minicom, once you have a minicom session open an ready, execute the following command to get
+the device's IP address that you will need for SSH:
+```bash
+ifconfig
+
+```
+Then open a terminal on your computer and run the following command:
+```bash
+# Your computer console
+ssh root@IP_ADDRESS
+
+```
+and the session would be open and ready. After this, you can close the minicom session with the following shortcuts:
+```text
+ ctrl/cmd + q
+ then when asked hit yes
+```
+Now, you can use your ssh connection to execute the rest of the instructions in this section.
+:::
