@@ -33,7 +33,7 @@ cd tee-images
 
 ## Running using qemu/qemu8:
 After you cloned the tee-images repository follow the steps indicated
-[here](../technical/30.BSP/32.BSP_Qemu.mdx) for either qemu or qemu8.
+[here](../technical/30.BSP/31.BSP.mdx) for either qemu or qemu8.
 Once the steps there are done, execute the following commands that are
 also listed in the development section, we repeat them here for
 simplicity and to make the testing instructions clear:

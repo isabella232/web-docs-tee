@@ -1,6 +1,6 @@
 ---
-title: OLD M1
-sidebar_position: 5
+title: Milestone 1 (Obsolete)
+sidebar_position: 3
 ---
 
 ## Research and Prototyping
@@ -24,15 +24,7 @@ From an architectural overview, we considered the following aspects:
   - Provisioning process and documentation
   - Image signing tool
   - Documentation
-
-### Testing guide
-
-<!--We invite you to follow the [tutorial/testing guide](../testing/intro).-->
-
-:::warning
-The testing guide will be updated and adjusted as we make progress.
-:::
-
+  
 ## Deliverables
 
 ### 1. Hardware selection
@@ -91,8 +83,8 @@ We provide instructions for the [supported platforms here](https://zondax.github
 The following repositories contain the implementation for different components / layers:
 
 | Component / layer                                             | Link / Repository                                             |
-| ------------------------------------------------------------- | ------------------------------------------------------------- |
-| Yocto images (build environment, container, CI and manifests) | [GitHub](https://github.com/Zondax/zondbox-images)            |
+| ------------------------------------------------------------- |---------------------------------------------------------------|
+| Yocto images (build environment, container, CI and manifests) | [GitHub](https://github.com/Zondax/tee-images)                |
 | Yocto metalayer with specific image customization             | [GitHub](https://github.com/Zondax/meta-zondax)               |
 | Build container (build environment, toolchains, qemu)         | [GitHub](https://github.com/Zondax/docker-builder)            |
 | HelloRustee - Rust + OPTEE example                            | [GitHub](https://github.com/Zondax/hello-rustee/)             |
