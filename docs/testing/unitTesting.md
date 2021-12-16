@@ -9,7 +9,8 @@ Unit testing the surronding applications is unfeasible due to the requirements i
 
 ## Prerequisites
 
-- Have `make`, but also `cargo`
+- Install rust (this includes cargo)
+- Install `build essentials` or a similar package that include `make`
 
 ## Run
 

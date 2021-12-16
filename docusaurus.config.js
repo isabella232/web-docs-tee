@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Zondax TEE',
-    tagline: 'TEE-based Remote Signers',
+    tagline: 'Proof of concept | TEE-based Remote Signers',
     url: 'https://tee.zondax.ch',
     baseUrl: '/',
     onBrokenLinks: 'throw',
