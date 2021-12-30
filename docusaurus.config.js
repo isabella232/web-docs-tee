@@ -40,9 +40,9 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             navbar: {
-                title: 'Zondax TEE',
+                title: 'Zondax TEE - PoC',
                 logo: {
-                    alt: 'Zondax TEE',
+                    alt: 'Zondax TEE - PoC',
                     src: 'img/logo.svg',
                 },
                 items: [
@@ -63,6 +63,12 @@ const config = {
                         docId: 'technical/intro',
                         position: 'left',
                         label: 'Technical',
+                    },
+                    {
+                        type: 'doc',
+                        docId: 'demo/intro',
+                        position: 'left',
+                        label: 'Demo',
                     },
                     {
                         to: 'https://zondax.ch',
