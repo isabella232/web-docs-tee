@@ -16,7 +16,7 @@ This guide will take you from a clean board and a clean computer to having a boa
 
 ## Substrate Node
 
-We start with compiling the substrate node first, since it takes a while aswell, and we can do it beforehand easily:
+We start with compiling the substrate node first, since it takes a while as well, and we can do it beforehand easily:
 
 1. Clone [our substrate fork](https://github.com/Zondax/substrate/tree/teekeystore) (`teekeystore` branch)
 
@@ -40,24 +40,8 @@ Now that we are compiling the substrate node in the background, we can move onto
 First we need to [get the images](./technical/BSP/intro):
 
 ```bash
-git clone https://github.com/Zondax/tee-images
+git clone --recursive --branch master https://github.com/Zondax/buildroot-zondax/
 ```
-
-Then we need to fetch and prepares the manifest, so we combine all the [yocto layers](./technical/framework/teeimages) together:
-
-```bash
-cd tee-images
-make manifest
-```
-
-:::note
-
-If you have already fetched the manifest then you need to add `force` to the command:
-
-```bash
-make manifest force
-```
-
 :::
 
 ### Building image
@@ -67,14 +51,14 @@ The next step is to actually start [building the images](./technical/BSP/BSP).
 We offer many build options in our images but the ones that we [support](./technical/HardwareSelection) completely are 4:
 
 -   `dk2`, for [STM32MP157F-DK2](https://www.st.com/en/evaluation-tools/stm32mp157f-dk2.html)
--   `imx8mm-evk`, for [MCiMX8-evbk](https://www.compulab.com/products/sbcs/sbc-imx8m-mini-nxp-i-mx8m-mini-single-board-computer/#specs)
--   `qemu` for ARMv7
--   `qemu8` for ARMv8
+-   `imx8mmevk`, for [MCiMX8-evbk](https://www.compulab.com/products/sbcs/sbc-imx8m-mini-nxp-i-mx8m-mini-single-board-computer/#specs)
+<!---   `qemu` for ARMv7-->
+<!---   `qemu8` for ARMv8-->
 
 To start building, we can use a simple make command
 
 ```bash
-make build $image
+make $image
 ```
 
 where `$image` is the image name we are interested in building from the list above.
@@ -89,9 +73,9 @@ See you in ~2 hours, depending on the power of your machine
 
 After we are done building our image(s) we can [flash the micro SDcard](./technical/BSP/flashing) with it.
 
-The recommneded and easiest way is to use [balena etcher](https://github.com/balena-io/etcher/releases/tag/v1.7.0).
+The recommended and easiest way is to use [balena etcher](https://github.com/balena-io/etcher/releases/tag/v1.7.0).
 
-Select the image built, which can be found at `tee-images/shared/images/$image`, and just flash.
+Select the image built, which can be found at `buildroot-st/output/images/` for the dk2 or `buildroot/output/images` for the imx8mmevk, and just flash.
 
 ## Hardware Setup
 
