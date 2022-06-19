@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 30
 ---
 
-The following instructions will explain in detail how to use yocto in order to build SD Card images for each board.
+The following instructions will explain in detail how to use buildroot in order to build SD Card images for each board.
 The images contain the secure application for signing and key generation using a trusted execution environment based on the OPTEE standard.
 
 :::info
@@ -23,16 +23,17 @@ Board supported:
 
 ## Common steps
 
-First clone our entry point project that contains some scripts that take care of getting the packages and recipes to build an image for any of the supported boards:
+First clone our entry point project that contains some buildroot configuration and packages to build an image 
+for any of the supported boards:
 
 ```bash
-git clone git@github.com:Zondax/tee-images.git
-cd tee-images
-make manifest force
+git clone --recursive --branch master https://github.com/Zondax/buildroot-zondax/
+cd buildroot-zondax
 ```
 
-Once the manifest is updated we can start building the linux-base operating system that would run on the board you selected.
+We can start building the linux-base operating system that would run on the board you selected.
 
-It is important to mention that this step will build a full linux image containing everything is needed to run our optee-base application.
+It is important to mention that this step will build a minimal but functional linux image containing 
+everything is needed to run our optee-base application.
 
 It can take a lot of resources and time depending on your computer.
