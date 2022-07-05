@@ -35,14 +35,21 @@ cargo buid --release
 
 Now that we are compiling the substrate node in the background, we can move onto the images (which will also take long to build!)
 
-### Obtaining image
+### Obtaining the build code 
 
-First we need to [get the images](./technical/BSP/intro):
+First we need to [get the buildroot configs](./technical/BSP/intro):
 
 ```bash
 git clone --recursive --branch master https://github.com/Zondax/buildroot-zondax/
 ```
-:::
+```
+
+Then we need to move to this directory which contains the scripts and
+Make files used to build the images for the supported boards:
+
+```bash
+cd buildroot-zondax
+```
 
 ### Building image
 
@@ -55,8 +62,25 @@ We offer many build options in our images but the ones that we [support](./techn
 <!---   `qemu` for ARMv7-->
 <!---   `qemu8` for ARMv8-->
 
-To start building, we can use a simple make command
+Before starting building, You should generate required keys for each
+board, those keys are use to enable secure-boot and optee
+authentication. We have prepared some scripts under the `tools/` directory for each
+board for this. For example, for the dk2, the process to generate all
+the keys is as follows:
+- First generate the *Optee* key that is used by both boards:
+```bash
+./tools/optee/gen_keys.sh
+```
+- Then generate the keys for the dk2 board 
+```bash
+./tools/dk2/generate_keys.sh
+./tools/uboot/gen_keys.sh
+```
+For the imx board, the process is different, as the keys are generated
+as part of its build process, because it rely on a third party tool.
 
+Finally, after key generation we can start building using the command
+bellow:
 ```bash
 make $image
 ```
