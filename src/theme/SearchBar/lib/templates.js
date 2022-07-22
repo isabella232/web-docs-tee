@@ -1,6 +1,6 @@
-const prefix = 'algolia-docsearch';
-const suggestionPrefix = `${prefix}-suggestion`;
-const footerPrefix = `${prefix}-footer`;
+const prefix = 'algolia-docsearch'
+const suggestionPrefix = `${prefix}-suggestion`
+const footerPrefix = `${prefix}-footer`
 
 /* eslint-disable max-len */
 
@@ -109,6 +109,6 @@ const templates = {
   </svg>
 </div>
   `,
-};
+}
 
-export default templates;
+export default templates

@@ -24,7 +24,7 @@ From an architectural overview, we considered the following aspects:
   - Provisioning process and documentation
   - Image signing tool
   - Documentation
-  
+
 ## Deliverables
 
 ### 1. Hardware selection
@@ -35,29 +35,29 @@ Select two hardware platforms (from different providers) to use as a proof-of-co
 
 Our decision for M1 is to start development on the following boards. We have mainly prioritized technical support, supply chain, form factor, ethernet availability, latest generation MPU and community.
 
-| Model           | MPU         | Manufacturer        |                                       |
-| --------------- | ----------- | ------------------- | ------------------------------------- |
+| Model           | MPU         | Manufacturer        |                                      |
+| --------------- | ----------- | ------------------- | ------------------------------------ |
 | STM32MP157C-DK2 | STM32MP157C | ST Microelectronics | ![](/img/STM32MP157C-DK2_angle2.jpg) |
 | NXP MCiMX8-evkb | i.MX8       | NXP                 | ![](/img/imx8m.png)                  |
 
 We plan to extend support to the following devices in the following weeks
 
-| Model                    | MPU         | Manufacturer | Reason for delay                                             |
-| ------------------------ | ----------- | ------------ | ------------------------------------------------------------ |
-| Compulab SBC-iMX8M-Mini  | i.MX8       | Compulab     | OPTEE regression test fails. Being diagnosed by Compulab |
-| TechNexion PICO-PI-IMX8M | i.MX8       | TechNexion   | Zondax is currently testing for compatibility                |
-| Verdin iMX8M             | i.MX8       | Toradex      | Device is still not available in the market                  |
-| byteDEVKIT               | STM32MP157C | BytesAtWork  | Issues at boot. Discussing with manufacturer at this moment  |
+| Model                    | MPU         | Manufacturer | Reason for delay                                            |
+| ------------------------ | ----------- | ------------ | ----------------------------------------------------------- |
+| Compulab SBC-iMX8M-Mini  | i.MX8       | Compulab     | OPTEE regression test fails. Being diagnosed by Compulab    |
+| TechNexion PICO-PI-IMX8M | i.MX8       | TechNexion   | Zondax is currently testing for compatibility               |
+| Verdin iMX8M             | i.MX8       | Toradex      | Device is still not available in the market                 |
+| byteDEVKIT               | STM32MP157C | BytesAtWork  | Issues at boot. Discussing with manufacturer at this moment |
 
 It is unlikely that we will add support for the following devices:
 
-| Model                   | MPU   | Manufacturer | Reason for delay                                          |
-| ----------------------- | ----- | ------------ | --------------------------------------------------------- |
-| USB Armory Mk-II        | i.MX6 | F-secure     | Inadequate form factor. Lack of ethernet port, etc.       |
-| Advantech WISE-710      | i.MX6 | Advantech    | BSP and support was very low quality                      |
-| Phytec phyBOARD-Segin   | i.MX6 | Phytec       | OPTEE is not supported by the manufacturer                |
-| Phytec phyBOARD-Polaris | i.MX8 | Phytec       | OPTEE is not supported by the manufacturer                |
-| Apalis iMX8 QuadMax     | i.MX8 | Toradex      | OPTEE Support issues. Being discussed with NXP & Toradex  |
+| Model                   | MPU   | Manufacturer | Reason for delay                                         |
+| ----------------------- | ----- | ------------ | -------------------------------------------------------- |
+| USB Armory Mk-II        | i.MX6 | F-secure     | Inadequate form factor. Lack of ethernet port, etc.      |
+| Advantech WISE-710      | i.MX6 | Advantech    | BSP and support was very low quality                     |
+| Phytec phyBOARD-Segin   | i.MX6 | Phytec       | OPTEE is not supported by the manufacturer               |
+| Phytec phyBOARD-Polaris | i.MX8 | Phytec       | OPTEE is not supported by the manufacturer               |
+| Apalis iMX8 QuadMax     | i.MX8 | Toradex      | OPTEE Support issues. Being discussed with NXP & Toradex |
 
 Nevertheless, our implementation will be easy to port to other platforms. We expect the list of supported devices to grow over time.
 
@@ -83,7 +83,7 @@ We provide instructions for the [supported platforms here](https://zondax.github
 The following repositories contain the implementation for different components / layers:
 
 | Component / layer                                             | Link / Repository                                             |
-| ------------------------------------------------------------- |---------------------------------------------------------------|
+| ------------------------------------------------------------- | ------------------------------------------------------------- |
 | Yocto images (build environment, container, CI and manifests) | [GitHub](https://github.com/Zondax/tee-images)                |
 | Yocto metalayer with specific image customization             | [GitHub](https://github.com/Zondax/meta-zondax)               |
 | Build container (build environment, toolchains, qemu)         | [GitHub](https://github.com/Zondax/docker-builder)            |
@@ -104,7 +104,7 @@ In milestone 2, we will deliver better tooling to simplify this process.
 :::tip Milestone requirement
 
 - Hello-World examples and basic configuration to demonstrate Secure Boot and TrustZone usage.
-:::
+  :::
 
 The current Yocto images contain "hello_rustee" [GitHub](https://github.com/Zondax/hello-rustee/), an example to demonstrate:
 
