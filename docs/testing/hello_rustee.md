@@ -26,46 +26,49 @@ In all of them the application output must be the same and look like:
 [TEE] >> been to trusted and back
 ```
 
-To run this application, the first step is to clone the [tee-images](https://github.com/Zondax/tee-images) repository:
+To run this application, the first step is to clone the [buildroot images](https://github.com/Zondax/buildroot-zondax) repository:
 
 ```bash
-git clone https://github.com/Zondax/tee-images.git
-cd tee-images
+git clone https://github.com/Zondax/buildroot-zondax.git
+cd buildroot-zondax
 ```
 
 ## Running using qemu/qemu8:
 
-After you cloned the tee-images repository follow the steps indicated
-[here](../technical/30.BSP/31.BSP.mdx) for either qemu or qemu8.
+After you cloned the buildroot repository follow the steps indicated
+[here](../technical/BSP/BSP) for either qemu or qemu8.
 Once the steps there are done, execute the following commands that are
 also listed in the development section, we repeat them here for
 simplicity and to make the testing instructions clear:
 
 ### Start qemu and testing env
 
+To start `qemu` environment, we first need to compile the app with the following commands:
+
 ```bash
-make dev qemu
+./tools/optee/gen_keys.sh
+make zondaxtee_qemu_defconfig
+make
+make start-qemu-host
 ```
 
-This should launch a tmux session with 4 panes:
-<img src="/img/qemu-tmux.png" alt="drawing" width="800"/>
+Wait for boot and login with user `root` (no password is required).
 
-You can start the emulator by typing c and then ENTER(on the QEMU panel), then login, using root in the Normal world panel, no password is required
+:::tip
+To exit and kill qemu, click `CTRL+a x`
+:::
 
 ### Execute hello-rustee
 
 This demo application is by default part of any image created using
-tee-images. You can run it directly. After login in the normal world
-panel, just run it as it were a command:
+buildroot-zondax. You can run it directly. After login in `qemu`, just run it as it were a command:
 
-```
-qemu-optee64 login: root #hit Enter
-
-root@qemu-optee64:~ RUST_LOG=info hello-rustee
+```bash
+RUST_LOG=info hello-rustee
 ```
 
 As you can see, we enable Rust logging using **RUST_LOG=info**, you can set
-the log level to debug or trace. The output looks like:
+the log level to `debug` or `trace`. The output looks like:
 
 ```bash
 Requesting session
@@ -145,4 +148,4 @@ after [configuring](../technical/20.HardwareSetup/20.intro.mdx) your device, log
 hello-rustee
 ```
 
-The Output should be quite similar to what we got running the app in qemu.
+The Output should be quite similar to what we got running the app in `qemu`.
