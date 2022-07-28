@@ -11,14 +11,14 @@ The full guide on how to get started is available [in the project quick start](.
 
 Here you'll find a recap:
 
--   Clone our substrate fork
--   Compile the substrate node
--   Setup the board
--   Figure out the IP of the board
+- Clone our substrate fork
+- Compile the substrate node
+- Setup the board
+- Figure out the IP of the board
 
-    Normally the boards will have DHCP configured so you should be able to find the IP via your router or via the serial console using `ip a` to view the address.
+  Normally the boards will have DHCP configured so you should be able to find the IP via your router or via the serial console using `ip a` to view the address.
 
-    Verify that the ip is reachable by the computer running the nodes via a simple `ping $remote_signer_ip`
+  Verify that the ip is reachable by the computer running the nodes via a simple `ping $remote_signer_ip`
 
 ## Single Node/Validator + 1 Remote Signer
 

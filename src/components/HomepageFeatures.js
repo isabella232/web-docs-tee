@@ -1,6 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
-import styles from './HomepageFeatures.module.css';
+import React from 'react'
+import clsx from 'clsx'
+import styles from './HomepageFeatures.module.css'
 
 const FeatureList = [
   {
@@ -18,7 +18,8 @@ const FeatureList = [
     Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Applications can be isolated by running in a TEE (Trusted Execution Environment) or by running Zephyr in a separate core (Future feature).
+        Applications can be isolated by running in a TEE (Trusted Execution
+        Environment) or by running Zephyr in a separate core (Future feature).
       </>
     ),
   },
@@ -26,14 +27,12 @@ const FeatureList = [
     title: 'Rust + Trusted Applications',
     Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
     description: (
-      <>
-        We provide support for Trusted Applications (TAs) written in Rust.
-      </>
+      <>We provide support for Trusted Applications (TAs) written in Rust.</>
     ),
   },
-];
+]
 
-function Feature({Svg, title, description}) {
+function Feature({ Svg, title, description }) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
@@ -44,7 +43,7 @@ function Feature({Svg, title, description}) {
         <p>{description}</p>
       </div>
     </div>
-  );
+  )
 }
 
 export default function HomepageFeatures() {
@@ -58,5 +57,5 @@ export default function HomepageFeatures() {
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -32,7 +32,7 @@ then try to connect to the default serial port:
 sudo minicom -D /dev/ttyACM0
 ```
 
-:::note 
+:::note
 This port name may change depending on your setup, another variant is
 **ttySTM0**
 :::
@@ -42,26 +42,26 @@ the boot stage on your device.
 
 ```text
 [    5.540230] stm32-dwmac 5800a000.ethernet eth0: IEEE 1588-2008 Advanced Timed
-[    5.548979] stm32-dwmac 5800a000.ethernet eth0: registered PTP clock         
+[    5.548979] stm32-dwmac 5800a000.ethernet eth0: registered PTP clock
 [    5.555785] stm32-dwmac 5800a000.ethernet eth0: configuring for phy/rgmii-ide
-                                                                                
-Poky (Yocto Project Reference Distro) 3.4 stm32mp1 /dev/ttySTM0                 
-                                                                                
-stm32mp1 login: D/TA:  TA_CreateEntryPoint:8 Create entry point                 
-Creating                                                                        
-D/TA:  TA_OpenSessionEntryPoint:21 Open Session entry point                     
-Opening session                                                                 
-[   33.768739] usb33: supplied by vdd_usb                                       
-[   33.771193] vref: supplied by vdd                                            
-[   33.774503] vref: disabling                                                  
-[   33.777169] vdda: disabling                                                  
-                                                                                
-Poky (Yocto Project Reference Distro) 3.4 stm32mp1 /dev/ttySTM0                 
-                                                                                
-stm32mp1 login: 
+
+Poky (Yocto Project Reference Distro) 3.4 stm32mp1 /dev/ttySTM0
+
+stm32mp1 login: D/TA:  TA_CreateEntryPoint:8 Create entry point
+Creating
+D/TA:  TA_OpenSessionEntryPoint:21 Open Session entry point
+Opening session
+[   33.768739] usb33: supplied by vdd_usb
+[   33.771193] vref: supplied by vdd
+[   33.774503] vref: disabling
+[   33.777169] vdda: disabling
+
+Poky (Yocto Project Reference Distro) 3.4 stm32mp1 /dev/ttySTM0
+
+stm32mp1 login:
 ```
 
-in case you do not see the login line, press __enter__ , then as user
+in case you do not see the login line, press **enter** , then as user
 type **root** and no password is required.
 
 [ST documentation](https://wiki.st.com/stm32mpu/wiki/Getting_started/STM32MP1_boards/STM32MP157x-DK2/Let%27s_start) is excellent and you can find plenty of information there.
@@ -78,27 +78,27 @@ ps
 the output might look like:
 
 ```bash
- 247 root      4304 S    sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups  
-  250 root     11116 S    /usr/sbin/tee-supplicant -d                           
-  252 root         0 IW<  [optee_bus_scan]                                      
-  258 root     10584 S    /usr/sbin/tee-substrate-service                       
-  264 root      2328 S    /sbin/syslogd -n -O /var/log/messages                 
-  269 root      2328 S    /sbin/klogd -n                                        
-  272 root      2328 S    /usr/sbin/ifplugd                                     
-  277 root      2328 S    {start_getty} /bin/sh /bin/start_getty 115200 ttySTM  
-  278 root      2328 S    /sbin/getty 38400 tty1                                
-  280 root      2416 S    -sh                                                   
-  323 root         0 IW   [kworker/1:1-eve]                                     
-  344 root         0 IW   [kworker/1:0-eve]                                     
-  357 root      2416 R    ps                                                    
-root@stm32mp1:~# 
+ 247 root      4304 S    sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups
+  250 root     11116 S    /usr/sbin/tee-supplicant -d
+  252 root         0 IW<  [optee_bus_scan]
+  258 root     10584 S    /usr/sbin/tee-substrate-service
+  264 root      2328 S    /sbin/syslogd -n -O /var/log/messages
+  269 root      2328 S    /sbin/klogd -n
+  272 root      2328 S    /usr/sbin/ifplugd
+  277 root      2328 S    {start_getty} /bin/sh /bin/start_getty 115200 ttySTM
+  278 root      2328 S    /sbin/getty 38400 tty1
+  280 root      2416 S    -sh
+  323 root         0 IW   [kworker/1:1-eve]
+  344 root         0 IW   [kworker/1:0-eve]
+  357 root      2416 R    ps
+root@stm32mp1:~#
 ```
 
-The __ps__ command lists the processes that are running in the device, and you
-must see the application process called __tee-substrate-service__.
+The **ps** command lists the processes that are running in the device, and you
+must see the application process called **tee-substrate-service**.
 
 :::note
 The tee-substrate-service is a demon process that waits for requests
-through __tcp://localhost:39946__, check [docs](../../testing/intro) to know how to ensure
+through **tcp://localhost:39946**, check [docs](../../testing/intro) to know how to ensure
 the service does what is supposed to do.
 :::

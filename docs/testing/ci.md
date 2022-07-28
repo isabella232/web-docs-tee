@@ -1,5 +1,5 @@
 ---
-title: CI Tests 
+title: CI Tests
 sidebar_position: 5
 ---
 
@@ -53,7 +53,7 @@ This is a simple utility to reduce boilerplate related to scheduling in the appl
 
 Due to the nature of how we run these tests, we are not able to run these tests directly.
 
-This in turn translates on printing test reports to the console and then later interpreting them to collect the results. 
+This in turn translates on printing test reports to the console and then later interpreting them to collect the results.
 
 A [script] has been devised to serve the purpose of doing setup tasks, running the application and finally collecting reports and presenting a summary
 

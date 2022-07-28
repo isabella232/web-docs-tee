@@ -26,8 +26,8 @@ Click [here](intro#original-description) for additional information about the or
 
 For testing purposes, we recommend the following devices:
 
-| Model               | Price        | Notes                                 | Status       |
-| ------------------- | ------------ | ------------------------------------- | ------------ |
+| Model               | Price        | Notes                                       | Status       |
+| ------------------- | ------------ | ------------------------------------------- | ------------ |
 | ~~STM32MP157C-DK2~~ | ~~~99 USD~~  | ~~[Mouser][1] \| [Digikey][2] \| [ST][3]~~  | Discontinued |
 | ~~MCiMX8-evkb~~     | ~~~484 USD~~ | ~~[Mouser][4] \| [Digikey][5] \| [NXP][6]~~ | Discontinued |
 | STM32MP157F-DK2     | ~99 USD      | [Mouser][7] \| [Digikey][8] \| [ST][9]      |              |
@@ -60,10 +60,10 @@ Along the development process, external factors have resulted in the minor adjus
 - Due to some devices being discontinued, we have migrated the work to more recent models.
 
 - ~~After discussing with the Parity team, it has been decided that Substrate changes will be done by the Parity team.
-Zondax with later integrate by using this API.~~
+  Zondax with later integrate by using this API.~~
 
 - While Parity provided some initial reference implementation, this was not adequate for our purposes. Up to this date, Parity has not merged their changes into Substrate.
-In order to make progress, Zondax has created a fork with the neces 
+  In order to make progress, Zondax has created a fork with the neces
 
 ## Original description
 
