@@ -4,7 +4,7 @@ sidebar_position: 3
 ---
 
 The [hello-rustee](../technical/40.Development/41.HelloRustee.md) application is a hello world program that we use to
-check that the optee framework built by yocto works as expected. This
+check that the optee framework built by buildroot works as expected. This
 demo application is also intended for development purposes due to
 its simplicity while having the same hierarchical structure as our main application
 (the tee-substrate-service).
