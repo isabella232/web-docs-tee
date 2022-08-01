@@ -7,7 +7,7 @@ sidebar_position: 1
 
 Some setup is required and expected in order to run the demos listed below.
 
-The full guide on how to get started is available [in the project quick start](../Overview.md);
+The full guide on how to get started is available [in the project quick start](../Overview.mdx);
 
 Here you'll find a recap:
 
