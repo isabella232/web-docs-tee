@@ -35,8 +35,8 @@ Select two hardware platforms (from different providers) to use as a proof-of-co
 
 Our decision for M1 is to start development on the following boards. We have mainly prioritized technical support, supply chain, form factor, ethernet availability, latest generation MPU and community.
 
-| Model           | MPU         | Manufacturer        |                                      |
-| --------------- | ----------- | ------------------- | ------------------------------------ |
+| Model           | MPU         | Manufacturer        |                                           |
+| --------------- | ----------- | ------------------- | ----------------------------------------- |
 | STM32MP157C-DK2 | STM32MP157C | ST Microelectronics | ![](../assets/STM32MP157C-DK2_angle2.jpg) |
 | NXP MCiMX8-evkb | i.MX8       | NXP                 | ![](../assets/imx8m.png)                  |
 
