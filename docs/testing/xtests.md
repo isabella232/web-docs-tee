@@ -6,12 +6,23 @@ sidebar_position: 2
 The first step after [flashing](../technical/BSP/Flashing) the SD Card with our distribution and
 [booting](../technical/20.HardwareSetup/20.intro.mdx) the device is running the **Optee tests**, better known as [xtests](https://github.com/OP-TEE/optee_test).
 These tests are important because they ensure that the Tee kernel drivers and supplicant that are
-running on the device work and behave as they are supposed to do and
-they show what parts of optee fail.
+running on the device work and behave as they are supposed to do.
+They also show what parts of optee fail.
 Optee has many features, some of them are not really necessary, like secure tcp
 sockets, peripheral communication like SPI or serial ports. As those
 features are not necessary for our application, even though some optee
-tests fail they might not be critical.
+tests fail, they might not be critical.
+:::warning
+The Optee framework provides the option
+to authenticate applications that can be executed in the system.
+We use this functionality in STM32MP157F-DK2
+and 8MMINILPD4-EVKB boards, this way we ensure that only signed
+optee-applications can run on our boards. This causes that the __xtests__ 
+fail when running in our boards as they are compiled by our
+build system, but, they are signed with a default key provided by the
+Optee build system, which is different from our custom key, as a result any call to open an optee session from
+the tests applications would fail.
+:::
 
 ## Running xtest
 
