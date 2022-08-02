@@ -1,0 +1,35 @@
+---
+title: FAQ 
+sidebar_position: 50
+---
+
+## Frequently Asked Questions 
+
+### Q: How to rebuild a package and update the image
+Sometimes it is necessary to modify a custom package, without having to
+start the build process from scratch as it is time consuming.
+Lets say we want to do some changes to the [hello-rustee](technical/40.Development/41.HelloRustee.md) package.
+Just go to the source directory, modify the source code as required,
+then in order to update the image with the recent changes you made,
+run the following commands:
+```bash
+make hellorustee-dirclean
+make hellorustee-build
+make hellorustee-install
+```
+Then it is necessary to update the image, this is done by running 
+the make command, this command wont start from scratch if a previous
+build has already been done, but would update the image with the new
+hello-rustee binary.
+```bash 
+make 
+```
+We use __hellorustee__ which is the package name according to the
+setting [here](https://github.com/Zondax/buildroot-zondax/tree/master/package/zondax/hellorustee).
+:::info
+It is a good practice in buildroot to not have '-' or another especial
+symbol as part of package names.
+:::
+
+
+
