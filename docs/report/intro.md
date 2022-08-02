@@ -22,16 +22,16 @@ We believe that an affordable reference open-source software/hardware stack base
 Click [here](intro#original-description) for additional information about the original project proposal.
 :::
 
-## Where to buy test devices
+## Buying test devices
 
 For testing purposes, we recommend the following devices:
 
-| Model               | Price        | Notes                                       | Status       |
-| ------------------- | ------------ | ------------------------------------------- | ------------ |
-| ~~STM32MP157C-DK2~~ | ~~~99 USD~~  | ~~[Mouser][1] \| [Digikey][2] \| [ST][3]~~  | Discontinued |
-| ~~MCiMX8-evkb~~     | ~~~484 USD~~ | ~~[Mouser][4] \| [Digikey][5] \| [NXP][6]~~ | Discontinued |
-| STM32MP157F-DK2     | ~99 USD      | [Mouser][7] \| [Digikey][8] \| [ST][9]      |              |
-| 8MMINILPD4-EVKB     | ~399 USD     | [Mouser][10] \| [Digikey][11] \| [NXP][12]  |              |
+| Model               | Price        | Notes           | Status          |
+|---------------------|--------------|-----------------|-----------------|
+| ~~STM32MP157C-DK2~~ | ~~~99 USD~~  | ~~[Mouser][1] \ | [Digikey][2] \  | [ST][3]~~  | Discontinued |
+| ~~MCiMX8-evkb~~     | ~~~484 USD~~ | ~~[Mouser][4] \ | [Digikey][5] \  | [NXP][6]~~ | Discontinued |
+| STM32MP157F-DK2     | ~99 USD      | [Mouser][7] \   | [Digikey][8] \  | [ST][9]      |              |
+| 8MMINILPD4-EVKB     | ~399 USD     | [Mouser][10] \  | [Digikey][11] \ | [NXP][12]  |              |
 
 [1]: https://www.mouser.ch/ProductDetail/STMicroelectronics/STM32MP157C-DK2?qs=9r4v7xj2LnnSrQDGcA2diw==
 [2]: https://www.digikey.ch/products/en?keywords=MCIMX8M-EVKB

@@ -54,12 +54,6 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'testing/intro',
-            position: 'left',
-            label: 'Testing Guide',
-          },
-          {
-            type: 'doc',
             docId: 'technical/intro',
             position: 'left',
             label: 'Technical',

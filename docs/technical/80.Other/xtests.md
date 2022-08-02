@@ -4,7 +4,7 @@ sidebar_position: 2
 ---
 
 The first step after [flashing](../technical/BSP/Flashing) the SD Card with our distribution and
-[booting](../technical/20.HardwareSetup/20.intro.mdx) the device is running the **Optee tests**, better known as [xtests](https://github.com/OP-TEE/optee_test).
+[booting](../20.HardwareSetup/20.intro.mdx) the device is running the **Optee tests**, better known as [xtests](https://github.com/OP-TEE/optee_test).
 These tests are important because they ensure that the Tee kernel drivers and supplicant that are
 running on the device work and behave as they are supposed to do and
 they show what parts of optee fail.

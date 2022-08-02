@@ -1,169 +1,91 @@
 ---
-title: Development workflow
+title: Running Qemu
 sidebar_position: 40
 ---
-
 This section describes the tools that we include in this project to facilitate the development and testing of applications
 that should be compiled for any of the supported targets.
 
-## Prerequisites
+## Clone the repo
 
-- We assume you are using Ubuntu. Other OSs (MacOS/Windows) are not formally supported.
-
-- Install tmux
-
-  ```bash
-  sudo apt install tmux
-  ```
-
-- We recommend install oh-my-tmux [here](https://github.com/namtzigla/oh-my-tmux)
-
-  ```bash
-  cd
-  git clone https://github.com/gpakosz/.tmux.git
-  ln -s -f .tmux/.tmux.conf
-  cp .tmux/.tmux.conf.local .
-  ```
-
-## Development
-
-Let's assume you are working on the hello-rustee example. This is located in the `hello-rustee` recipe.
+First of all, we need to clone the images repo en `cd` into it.
 
 ```bash
-make workspace qemu hello-rustee
+git clone --recursive --branch master https://github.com/Zondax/buildroot-zondax.git
+cd buildroot-zondax
 ```
 
-This command will checkout the source code of the recipe in `sources/hello-rustee`.
+## Build the image
 
-You can now start working there (even switch branches or commit changes!)
-The next step is to run qemu, as the compilation process will be done "inside" qemu using Yocto's tooling
-to ensure that our changes wont affect the image building process and the
-application will run seamlessly on the target.
+To build the image, please run the following command:
+
+```bash
+make zondaxtee_qemu_defconfig; make
+```
 
 ### Run
 
-After checking out the recipe code we want to work on, we need to start qemu
-and the bitbake shell.
-
-:::info
-Remember you need tmux for this step
-:::
-
-In the same terminal you use for the previous step run:
+Start the emulator:
 
 ```bash
-make dev qemu
+make qemu
 ```
 
-This should launch a tmux session with 4 panes:
+You will then see the "machine" booting. After a few seconds, you will see a login prompt, in development images
+you can use `root` as user and no password is set.
 
-<img
-  src={require('../../assets/qemu-tmux.png').default}
-  alt="drawing"
-  width="800"
-/>
-
-- **Top pane**: QEMU
-- **Left pane**: Rich execution environment (`telnet localhost 54320`)
-- **Right pane**: Secure execution environment (`telnet localhost 54321`
-- **Bottom pane**: Bitbake
-
-You can start the emulator by typing `c <ENTER>` in the top panel.
-
-You will then see the "machine" booting. After a few seconds, you will see a login prompt on the left pane.
-
-:::tips tmux Tips
-
-- If you installed oh-my-tmux, your prefix will be `<CTRL>+A` otherwise, it will be `<CTRL>+B`
-
-- To close everything use `<PREFIX> + &`, the answer `y`
-
+:::tips Tips
+- To exit qemu, you can use CTRL+A X
+- If you want to get access to the TEE console, you can use `telnet 127.0.0.1 54321`
 :::
 
-### Build your changes
+once you login, you can run your app (`hello-rustee`) and see the outputs both in REE and TEE
 
-1. Go to the bitbake window (bottom pane) and build the recipe:
-
-   ```bash
-   bitbake -c cleansstate hello-rustee
-   ```
-
-2. Then we can built our recipe
-   ```bash
-   bitbake hello-rustee
-   ```
-
-The first command will clean previous build artifacts stored in bitbake cache, so that, a fresh compilation
-starts. This is because bitbake keep previous builds data including
-timestamps that are used to check if it is necessary to build, package and install a recipe. This step ensures those timestamps get invalidated and
-all the build stages are done.
-
-The second command will trigger a minimal image rebuild, after which you should see something like this in the bitbake panel:
-
-```
-Build Configuration:
-BB_VERSION           = "1.52.0"
-BUILD_SYS            = "x86_64-linux"
-NATIVELSBSTRING      = "universal"
-TARGET_SYS           = "aarch64-poky-linux"
-MACHINE              = "qemu-optee64"
-DISTRO               = "zondbox-distro"
-DISTRO_VERSION       = "3.4.1"
-TUNE_FEATURES        = "aarch64 armv8a crc cortexa57"
-TARGET_FPU           = ""
-meta
-meta-poky
-meta-yocto-bsp       = "HEAD:09296dca79c2c1de3d440b6374f949f8b8faca40"
-meta-oe
-meta-python          = "HEAD:f632403d1800363ac63a1ad5543278b82c659832"
-workspace            = "<unknown>:<unknown>"
-meta-zondax-qemu     = "HEAD:278a73f29b859bdd52bf85dcdf85cb9a9c034107"
-meta-zondax          = "HEAD:795094163436c067ac9694a29d17ef648b5f6dbe"
-
-Initialising tasks: 100% |#####################################################################################################################################| Time: 0:00:00
-Sstate summary: Wanted 0 Local 0 Network 0 Missed 0 Current 173 (0% match, 100% complete)
-NOTE: Executing Tasks
-WARNING: hello-rustee-0.1-r0 do_populate_lic: /usr/lib/python3.8/ast.py:371: PendingDeprecationWarning: visit_Str is deprecated; add visit_Constant
-  return visitor(node)
-
-NOTE: hello-rustee: compiling from external source tree /home/zondax_circle/shared/zondbox-distro/build/workspace/sources/hello-rustee
-NOTE: Tasks Summary: Attempted 728 tasks of which 717 didn't need to be rerun and all succeeded.
-
-Summary: There was 1 WARNING message shown.
+_REE_
+```text
+# hello-rustee
+Requesting session
+running client service
+Clossing session#
 ```
 
-In this case there were not errors and you can be sure that your changes
-wont cause compilation issues.
+_TEE_
+```text
+> telnet 127.0.0.1 54321
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+D/TA:  TA_CreateEntryPoint:8 Create entry point
+Creating
+D/TA:  TA_OpenSessionEntryPoint:21 Open Session entry point
+Opening session
+D/TA:  TA_InvokeCommandEntryPoint:35 Invoke Command entry point
+Invoked command
+D/TA:  TA_CloseSessionEntryPoint:27 Close Session entry point
+Closing session
+D/TA:  TA_DestroyEntryPoint:14 Destroy entry point
+Destroying
+```
 
-### Testing
+### Applying changes
 
-Let's say that you want to test your changes without having to restart the emulator. :)
+You can find the source code of the demo app in `external/hello-rustee` (git submodule pointing to the repository)
 
-In this case, you can mount the local filesystem inside the emulator.
-
-:::tip
-You should have already started the emulator and booted the image!
-:::
-
-In the left pane, login as root and type:
-
+In this example, please edit a file, for instance:
 ```bash
-cd /mnt
+vim external/hello-rustee/TEE/lib/src/optee.rs
 ```
 
-We provided a script that you can use to run the application, the script
-also updates the TA binary in qemu.
+Look for the line `trace!("Invoked command..");` and replace that with `trace!("Hi!!!!");`
 
-```bash
-./run_app.sh
+If you modify the source code, there are some handy make targets that help rebuilding specific packages:
+
+```
+make hellorustee-dirclean; make hellorustee-build; make hellorustee-install
+make
 ```
 
-This script will run the application you just compiled, if some logging is added, you should see them.
-In another terminal you can edit and modify the recipe code which is
-located in tee-images/sources.
+These are applicable to any package, i.e. `make {PACKAGE}-build` would work
 
-:::warning
-Every time you make changes and want to test them, It is necessary to run
-the [steps](#build-your-changes) 1 and 2 above. otherwise the binary will ended-up being the same
-and new changes will not be there.
-:::
+Now you can run qemu again, and test hello-rustee and you will see your changes appearing! :tada::tada::tada:
+
+The next section will provide a brief overview of Hello-Rustee :sunglasses:
