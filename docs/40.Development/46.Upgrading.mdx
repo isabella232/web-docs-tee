@@ -1,0 +1,74 @@
+---
+title: Upgrading
+sidebar_position: 46
+---
+
+The optee framework requires that TA applications are signed. By default
+optee-os comes with a [dummy](https://github.com/OP-TEE/optee_os/tree/master/keys) key that is used to sign optee applications,
+tests and examples. If a user wants to sign the TA with a custom key, they
+have to pass to optee-os the public key to use in order to validate
+TA signatures and sign the trusted application following the algorith
+described [here](https://optee.readthedocs.io/en/latest/building/trusted_applications.html#signing-of-tas)
+:::info
+Automatic TA signing happens [here](https://github.com/OP-TEE/optee_os/blob/master/ta/arch/arm/link.mk#L109)
+:::
+
+## Enabling offline signing of TAs
+
+Our yocto configuration enables offline signing by default. In order to
+disable offline signing, you have to comment out the following lines in
+our template configuration [file](https://github.com/Zondax/tee-images/blob/ta_signing/shared/configs/local.conf.sample#L39)
+
+```bash
+export ENABLE_TA_SIGNING = "1"
+export TA_CUSTOM_PUBKEY = "${TOPDIR}/../../keys/optee/optee_pub_key.pem"
+export TA_CUSTOM_PRIVKEY = "${TOPDIR}/../../keys/optee/optee_priv_key.pem"
+```
+
+:::note
+If there is a previous build, the file that should be updated by
+commenting out the lines described above is the one located in
+`tee-images/shared/zondbox-distro/build/conf/local.conf`
+:::
+We recommend to keep offline signing enable by default if your
+application is intended to run in production, but if you are in the
+development stage, you can disable it.
+
+:::warning
+Offline signing causes the optee tests and examples to fail with
+the following error message:
+
+```bash
+E/TC:? 0 ldelf_init_with_ldelf:126 ldelf failed with res: 0xffff000f
+```
+
+where this error code means:
+
+```
+0xffff000f = TEEC_ERROR_SECURITY
+```
+
+This happens because they are
+signed using the default signing key that is part of optee-os, however
+optee was configured to use a different public key to validate the signature.
+:::
+
+## Generating keys
+
+There is a script that can be used to generate keys for offline signing:
+
+```bash
+git clone git@github.com:Zondax/tee-images.git # if it has not been cloned before
+cd tee-images
+./shared/tools/optee/gen_keys.sh
+```
+
+The keys are generated in the `shared/keys/optee/` sub-directory. It is
+advisable to make a security copy of those keys.
+
+## Building image with signed TAs
+
+Once the keys have been generated and offline signing is enabled, we can
+start to build an image that will contain our application properly
+signed using our custom keys. The build instructions remain the same as
+the signing process is done by our optee [framework](https://github.com/Zondax/tee-base/blob/master/ta/src/Makefile#L28)

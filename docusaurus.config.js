@@ -48,21 +48,15 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'report/intro',
+            docId: 'intro',
+            position: 'left',
+            label: 'Documentation',
+          },
+          {
+            type: 'doc',
+            docId: 'Report/Intro',
             position: 'left',
             label: 'Report',
-          },
-          {
-            type: 'doc',
-            docId: 'technical/intro',
-            position: 'left',
-            label: 'Technical',
-          },
-          {
-            type: 'doc',
-            docId: 'demo/intro',
-            position: 'left',
-            label: 'Demo',
           },
           {
             type: 'doc',
