@@ -65,6 +65,12 @@ const config = {
             label: 'Demo',
           },
           {
+            type: 'doc',
+            docId: 'faq',
+            position: 'left',
+            label: 'FAQ',
+          },
+          {
             to: 'https://zondax.ch',
             label: 'Zondax',
             position: 'right',
